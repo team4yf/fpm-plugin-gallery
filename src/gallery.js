@@ -40,11 +40,19 @@ const checkImagesDir = () => {
     }
   })
 }
-const Gallery =  (fpm) => {
+const Gallery =  (fpm, config) => {
   checkImagesDir()
   return {
     list: async () =>{
-      return await list()
+      let data = await list()
+      return {data: _.map(data.data, image=>{
+        let url = 'http://' + config.domain + '/' + image.key
+        let name = image.key.match(/_\w+.\w+$/ig)
+        if(_.isArray(name)){
+          name = name[0]
+        }
+        return _.assign(image, {url: url, name: name})
+      })}
     },
     upload: (images) => {
       

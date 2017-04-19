@@ -4,7 +4,7 @@ import qiniu from 'qiniu'
 let _options = {
   isInit: false,
   bucket: 'yfsoft',
-  prefix: 'fpm_',
+  prefix: 'fpm|',
   domain: '*****',
   ACCESS_KEY:'*****',
   SECRET_KEY:'*****',
